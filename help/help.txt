@@ -1,0 +1,155 @@
+for get detail by ID:-
+getDetail: async (req, res) => {
+  const id = req.params.id;
+
+  // Maan lijiye ki aapke paas ID ki validity ko check karne ka function hai, isValid ki jagah apne validation logic ka use karen
+  const isValidId = validateId(id);
+
+  if (!isValidId) {
+    return res.json({
+      statuscode: 400,
+      status: "bad request",
+      message: "Invalid ID format",
+    });
+  }
+
+  try {
+    // Maan lijiye ki studentModel mein ek student ko ID ke dwara find karne ka method hai, find ki jagah sahi method ka use karen
+    const foundStudent = await studentModel.findById(id);
+
+    if (!foundStudent) {
+      return res.json({
+        statuscode: 404,
+        status: "not found",
+        message: "Student not found",
+      });
+    }
+
+    return res.json({
+      statuscode: 200,
+      status: "success",
+      data: foundStudent,
+    });
+  } catch (error) {
+    res.json({
+      statuscode: 500,
+      status: "internal error",
+      message: "Internal server error",
+    });
+  }
+}
+
+
+
+
+for delete detail by ID:-
+deleteDetail: async (req, res) => {
+  const id = req.params.id;
+
+  const isValidId = ObjectId.isValid(id);
+
+  if (!isValidId) {
+    return res.json({
+      statuscode: 400,
+      status: "bad request",
+      message: "Invalid ID format",
+    });
+  }
+
+  try {
+    const deletedStudent = await studentModel.findByIdAndDelete(id);
+
+    if (!deletedStudent) {
+      return res.json({
+        statuscode: 404,
+        status: "not found",
+        message: "Student not found",
+      });
+    }
+
+    return res.json({
+      statuscode: 200,
+      status: "success",
+      message: "Student deleted successfully",
+    });
+  } catch (error) {
+    res.json({
+      statuscode: 500,
+      status: "internal error",
+      message: "Internal server error",
+    });
+  }
+}
+
+
+
+for update detail by ID:-
+updateDetail: async (req, res) => {
+  const id = req.params.id;
+  const { updatedField1, updatedField2, /* add other fields you want to update */ } = req.body;
+
+  const isValidId = ObjectId.isValid(id);
+
+  if (!isValidId) {
+    return res.json({
+      statuscode: 400,
+      status: "bad request",
+      message: "Invalid ID format",
+    });
+  }
+
+  try {
+    const updatedStudent = await studentModel.findByIdAndUpdate(
+      id,
+      { $set: { field1: updatedField1, field2: updatedField2 /* add other fields here */ } },
+      { new: true } // This option returns the updated document
+    );
+
+    if (!updatedStudent) {
+      return res.json({
+        statuscode: 404,
+        status: "not found",
+        message: "Student not found",
+      });
+    }
+
+    return res.json({
+      statuscode: 200,
+      status: "success",
+      data: updatedStudent,
+    });
+  } catch (error) {
+    res.json({
+      statuscode: 500,
+      status: "internal error",
+      message: "Internal server error",
+    });
+  }
+}
+
+
+add new fields in api 
+app.post('/students/:id/addFields', async (req, res) => {
+  try {
+    const { newField1, newField2 } = req.body;
+
+    // Fetch the existing student by ID
+    const existingStudent = await Student.findById(req.params.id);
+
+    if (!existingStudent) {
+      return res.status(404).json({ status: 'error', message: 'Student not found' });
+    }
+
+    // Add new fields to the existing student
+    existingStudent.newField1 = newField1;
+    existingStudent.newField2 = newField2;
+
+    // Save the updated student
+    const updatedStudent = await existingStudent.save();
+
+    res.status(200).json({ status: 'success', data: updatedStudent });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ status: 'error', message: 'Internal server error' });
+  }
+});
