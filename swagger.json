@@ -1,0 +1,285 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Student API",
+    "version": "1.0.0",
+    "description": "API for managing students"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:4000/students",
+      "description": "Local development server for students"
+    }
+  ],
+  "paths": {
+    "/postDetail": {
+      "post": {
+        "tags": ["Student"],
+        "summary": "Add a new student",
+        "description": "Endpoint to add a new student to the database.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "Rollno": {
+                    "type": "integer",
+                    "example": 1
+                  },
+                  "FirstName": {
+                    "type": "string"
+                  },
+                  "LastName": {
+                    "type": "string"
+                  },
+                  "Email": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully added student",
+            "content": {
+              "application/json": {
+                "example": {
+                  "status": "success",
+                  "message": "Successfully added student",
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "Rollno": {
+                        "type": "integer",
+                        "example": 1
+                      },
+                      "FirstName": {
+                        "type": "string"
+                      },
+                      "LastName": {
+                        "type": "string"
+                      },
+                      "Email": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error adding student",
+            "content": {
+              "application/json": {
+                "example": {
+                  "status": "error",
+                  "message": "Not added successfully",
+                  "data": "nothing found"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/getAllStudents": {
+      "get": {
+        "tags": ["Student"],
+        "summary": "Get a list of all students",
+        "description": "Endpoint to retrieve a list of all students from the database.",
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved list of students",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Rollno": {
+                      "type": "integer",
+                      "example": 1
+                    },
+                    "FirstName": {
+                      "type": "string"
+                    },
+                    "LastName": {
+                      "type": "string"
+                    },
+                    "Email": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error retrieving list of students",
+            "content": {
+              "application/json": {
+                "example": {
+                  "status": "error",
+                  "message": "Unable to retrieve list of students",
+                  "data": "nothing found"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/deleteStudent/{id}": {
+      "delete": {
+        "tags": ["Student"],
+        "summary": "Delete a student",
+        "description": "Endpoint to update a student in the database.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID of the student to be updated",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "Rollno": {
+                    "type": "integer",
+                    "example": 1
+                  },
+                  "FirstName": {
+                    "type": "string"
+                  },
+                  "LastName": {
+                    "type": "string"
+                  },
+                  "Email": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully updated student",
+            "content": {
+              "application/json": {
+                "example": {
+                  "status": "success",
+                  "message": "Successfully updated student",
+                  "data": {
+                    "Rollno": 1,
+                    "FirstName": "John",
+                    "LastName": "Doe",
+                    "Email": "john.doe@example.com"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error updating student",
+            "content": {
+              "application/json": {
+                "example": {
+                  "status": "error",
+                  "message": "Unable to update student",
+                  "data": "nothing found"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/updateStudent/{id}": {
+      "put": {
+        "tags": ["Student"],
+        "summary": "Update a student",
+        "description": "Endpoint to update a student in the database.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID of the student to be updated",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "Rollno": {
+                    "type": "integer",
+                    "example": 1
+                  },
+                  "FirstName": {
+                    "type": "string"
+                  },
+                  "LastName": {
+                    "type": "string"
+                  },
+                  "Email": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully updated student",
+            "content": {
+              "application/json": {
+                "example": {
+                  "status": "success",
+                  "message": "Successfully updated student",
+                  "data": {
+                    "Rollno": 1,
+                    "FirstName": "John",
+                    "LastName": "Doe",
+                    "Email": "john.doe@example.com"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error updating student",
+            "content": {
+              "application/json": {
+                "example": {
+                  "status": "error",
+                  "message": "Unable to update student",
+                  "data": "nothing found"
+                }
+              }
+            }
+          }
+        }
+      }
+    }    
+  }
+}

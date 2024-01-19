@@ -1,0 +1,24 @@
+apply swagger in project
+introduction
+installation and configure
+Server
+path
+parameter
+Response
+post parameter
+request body
+steps:-
+1)swagger ui->live demo
+2)npm install swagger-jsdoc@6.0.0 --save
+3)npm install swagger-ui-express --save
+
+
+swagger annotations:-
+summary
+Description
+tags
+parameters
+request body
+response
+schema
+example security

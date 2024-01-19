@@ -1,10 +1,12 @@
 const mongoose= require('mongoose');
 const Schema=mongoose.Schema;
 const StudentSchema= Schema({
-
     id:{
         type:mongoose.Schema.Types.ObjectId
      },
+     Rollno:{
+        type:Number
+    },
     firstname:{
         type:String
     },
@@ -13,9 +15,6 @@ const StudentSchema= Schema({
     },
     Email:{
         type:String
-    },
-    Rollno:{
-        type:Number
     }
 })
 module.exports=mongoose.model('student',StudentSchema);

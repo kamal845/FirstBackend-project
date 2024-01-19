@@ -1,0 +1,134 @@
+ filterJobPost: async (req, res) => {
+        try {
+            const { page, jobTitle, designation, employeeType, location, jobposted, experiencelevel, worktype } = req.query;
+            const indexPage = parseInt(page) || 1;
+            const pageSize = 20;
+            const skipCount = (indexPage - 1) * pageSize;
+
+            let stages = [];
+            let filter = {};
+            if (jobTitle) filter.JobTitle = { $in: jobTitle.split(',') };
+            if (designation) filter.Designation = { $in: designation.split(',') };
+            if (employeeType) filter.EmployeeType = { $in: employeeType.split(',') };
+            if (experiencelevel) filter.ExperienceLevel = { $in: experiencelevel.split(',') };
+            if (worktype) filter.WorkType = { $in: worktype.split(',') };
+            if (location) {
+                const locationsArray = location.split(',');
+
+                filter.Location = {
+                    $in: locationsArray.concat(locationsArray.map(location => new RegExp(location, 'i')))
+                };
+            }
+            // console.log("Filter Object:", filter); 
+            if (jobposted) {
+                const date = new Date(jobposted);
+                if (Object.prototype.toString.call(date) === "[object Date]") {
+                    if (isNaN(date)) {
+                        return __res_.out(req, res, {
+                            status: "error",
+                            statusCode: 400,
+                            message: "Invalid Date!!",
+                        });
+                    }
+                }
+                const dateWithoutTime = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+                filter.createdAt = { $gt: dateWithoutTime }
+            }
+            stages.push({
+                $match: filter
+            },
+                {
+                    $sort: { createdAt: 1 }
+                },
+                {
+                    $lookup: {
+                        from: "companies",
+                        foreignField: "_id",
+                        localField: "CompanyId",
+                        as: "company"
+                    }
+                },
+                {
+                    $lookup: {
+                        from: "appliedjobs",
+                        foreignField: "JobListId",
+                        localField: "_id",
+                        as: "appliedJob"
+                    }
+                },
+                {
+                    $project: {
+                        _id: 1,
+                        JobTitle: 1,
+                        CompanyId: 1,
+                        FirstName: 1,
+                        LastName: 1,
+                        Email: 1,
+                        DateOfBirth: 1,
+                        PhoneNumber: 1,
+                        Category: 1,
+                        Designation: 1,
+                        EmployeeType: 1,
+                        JobDescription: 1,
+                        KeySkills: 1,
+                        WorkExperienceYear: 1,
+                        HideSalary: 1,
+                        Location: 1,
+                        ExperienceLevel: 1,
+                        WorkType: 1,
+                        WorkingHours: 1,
+                        ExpectedSalary: 1,
+                        AvailableStartDate: 1,
+                        PostDate: "$createdAt",
+                        UpdatedDate: "$updatedAt",
+                        company: { $first: "$company" },
+                        appliedJob: { $first: "$appliedJob" }
+                    },
+
+                }, {
+                $project: {
+                    "company._id": 0,
+                    "company.Password": 0,
+                    "company.__v": 0,
+                    "company.updatedAt": 0,
+                }
+            }
+            )
+
+            const totalRecords = await jobPostingModel.aggregate([...stages, { $count: 'totalRecords' }]);
+
+            stages.push(
+                { $skip: skipCount },
+                { $limit: pageSize })
+
+            const response = await jobPostingModel.aggregate(stages);
+            if (response) {
+                return __res_.out(req, res, {
+                    status: true,
+                    statusCode: 200,
+                    message: response.length > 0 ? "Successfull!!" : "No Record Found!!",
+                    data: {
+                        totalRecords: totalRecords[0] ? totalRecords[0].totalRecords : 0,
+                        currentPage: indexPage,
+                        pageSize,
+                        records: response
+                    }
+                });
+            }
+            else {
+                return __res_.out(req, res, {
+                    status: "error",
+                    statusCode: 404,
+                    message: "Job Post not found!!",
+                });
+            }
+        } catch (e) {
+            console.log(e)
+            return __res_.out(req, res, {
+                status: true,
+                statusCode: 500,
+                message: "Internal server error!!!",
+                data: e
+            });
+        }
+    },

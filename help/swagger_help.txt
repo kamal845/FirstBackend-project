@@ -1,0 +1,1641 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Job Portal API",
+    "description": "All Job Portal API documentation.",
+    "version": "1.0"
+  },
+  "tags": [
+    {
+      "name": "User",
+      "description": "Operations related to User management"
+    },
+    {
+      "name": "Company",
+      "description": "Operations related to Company management"
+    },
+    {
+      "name": "Filter Options",
+      "description": "Operations related to Filter Options management"
+    }
+  ],
+  "paths": {
+    "/v1/user/addexperience/{userId}": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Add Experience",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "Designation": {
+                    "type": "string"
+                  },
+                  "EmploymentType": {
+                    "type": "string"
+                  },
+                  "CompanyName": {
+                    "type": "string"
+                  },
+                  "Location": {
+                    "type": "string"
+                  },
+                  "CurrentlyWorking": {
+                    "type": "boolean"
+                  },
+                  "StartDate": {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  "EndDate": {
+                    "type": "string",
+                    "format": "date"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Experience added successfully"
+          }
+        }
+      }
+    },
+    "/v1/user/updateexperience/{userId}": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Update Experience",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "ExperienceIndex": {
+                    "type": "integer"
+                  },
+                  "Designation": {
+                    "type": "string"
+                  },
+                  "EmploymentType": {
+                    "type": "string"
+                  },
+                  "CompanyName": {
+                    "type": "string"
+                  },
+                  "Location": {
+                    "type": "string"
+                  },
+                  "CurrentlyWorking": {
+                    "type": "boolean"
+                  },
+                  "StartDate": {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  "EndDate": {
+                    "type": "string",
+                    "format": "date"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Experience updated successfully"
+          }
+        }
+      }
+    },
+    "/v1/user/addproject/{userId}": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Add Project",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "ProjectTitle": {
+                    "type": "string"
+                  },
+                  "Client": {
+                    "type": "string"
+                  },
+                  "WorkedFrom": {
+                    "type": "string"
+                  },
+                  "ProjectStatus": {
+                    "type": "string",
+                    "enum": [
+                      "inProgress",
+                      "finished"
+                    ]
+                  },
+                  "ProjectDetails": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Project added successfully"
+          }
+        }
+      }
+    },
+    "/v1/user/updateproject/{userId}": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Update Project",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "Index": {
+                    "type": "integer"
+                  },
+                  "ProjectTitle": {
+                    "type": "string"
+                  },
+                  "Client": {
+                    "type": "string"
+                  },
+                  "WorkedFrom": {
+                    "type": "string"
+                  },
+                  "ProjectStatus": {
+                    "type": "string",
+                    "enum": [
+                      "inProgress",
+                      "finished"
+                    ]
+                  },
+                  "ProjectDetails": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Project updated successfully"
+          }
+        }
+      }
+    },
+    "/v1/user/addeducation/{userId}": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Add Education",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "Title": {
+                    "type": "string"
+                  },
+                  "UniversityInstitute": {
+                    "type": "string"
+                  },
+                  "CourseDuration": {
+                    "type": "object",
+                    "properties": {
+                      "StartingDate": {
+                        "type": "string",
+                        "format": "date"
+                      },
+                      "EndingDate": {
+                        "type": "string",
+                        "format": "date"
+                      }
+                    }
+                  },
+                  "CurrentlyWorkHere": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Education added successfully"
+          }
+        }
+      }
+    },
+    "/v1/user/updateeducation/{userId}": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Update Education",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "Index": {
+                    "type": "integer"
+                  },
+                  "Title": {
+                    "type": "string"
+                  },
+                  "UniversityInstitute": {
+                    "type": "string"
+                  },
+                  "CourseDuration": {
+                    "type": "object",
+                    "properties": {
+                      "StartingDate": {
+                        "type": "string",
+                        "format": "date"
+                      },
+                      "EndingDate": {
+                        "type": "string",
+                        "format": "date"
+                      }
+                    }
+                  },
+                  "CurrentlyWorkHere": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Education updated successfully"
+          }
+        }
+      }
+    },
+    "/v1/user/addcertification/{userId}": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Add Certification",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "CertificationName": {
+                    "type": "string"
+                  },
+                  "CertificationCompletionId": {
+                    "type": "integer"
+                  },
+                  "CertificationUrl": {
+                    "type": "string"
+                  },
+                  "StartDate": {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  "EndDate": {
+                    "type": "string",
+                    "format": "date"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Certification added successfully"
+          }
+        }
+      }
+    },
+    "/v1/user/updatecertification/{userId}": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Update Certification",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "CertificateIndex": {
+                    "type": "integer"
+                  },
+                  "CertificationName": {
+                    "type": "string"
+                  },
+                  "CertificationCompletionId": {
+                    "type": "integer"
+                  },
+                  "CertificationUrl": {
+                    "type": "string"
+                  },
+                  "StartDate": {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  "EndDate": {
+                    "type": "string",
+                    "format": "date"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Certification updated successfully"
+          }
+        }
+      }
+    },
+    "/v1/user/addaccomplishment/{userId}": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Add Accomplishment",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "FullName": {
+                    "type": "string"
+                  },
+                  "Phone": {
+                    "type": "integer"
+                  },
+                  "Email": {
+                    "type": "string"
+                  },
+                  "YearOfExperience": {
+                    "type": "integer"
+                  },
+                  "Gender": {
+                    "type": "string"
+                  },
+                  "SummaryOfQualification": {
+                    "type": "string"
+                  },
+                  "ProfessionalSkills": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Accomplishment added successfully"
+            }
+          }
+        }
+      }
+    },
+    "/v1/user/updateaccomplishment/{userId}": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Update Accomplishment",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "Index": {
+                    "type": "integer"
+                  },
+                  "FullName": {
+                    "type": "string"
+                  },
+                  "Phone": {
+                    "type": "integer"
+                  },
+                  "Email": {
+                    "type": "string"
+                  },
+                  "YearOfExperience": {
+                    "type": "integer"
+                  },
+                  "Gender": {
+                    "type": "string"
+                  },
+                  "SummaryOfQualification": {
+                    "type": "string"
+                  },
+                  "ProfessionalSkills": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Accomplishment updated successfully"
+            }
+          }
+        }
+      }
+    },
+    "/v1/auth/create": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Signup",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "FirstName": {
+                    "type": "string"
+                  },
+                  "LastName": {
+                    "type": "string"
+                  },
+                  "Email": {
+                    "type": "string"
+                  },
+                  "Password": {
+                    "type": "string"
+                  },
+                  "ConfirmPassword": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+       
+        },
+        "responses": {
+          "200": {
+            "description": "User signed up successfully"
+          }
+        }
+      }
+      
+    },
+    "/v1/auth/login": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Login",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "Email": {
+                    "type": "string"
+                  },
+                  "Password": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "User logged in successfully"
+            }
+          }
+        }
+      }
+    },
+    "/v1/auth/emailverify/{token}": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Email Verify",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "Email": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Email verified successfully"
+            }
+          }
+        }
+      }
+    },
+    "/v1/auth/confirm/{token}": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "parameters": [
+          {
+            "name": "token",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "summary": "Confirm Email",
+        "responses": {
+          "200": {
+            "description": "Email confirmed successfully"
+          }
+        }
+      }
+    },
+    "/v1/user/editprofile/{userId}": {
+      "patch": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Update User Profile",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "FirstName": {
+                    "type": "string"
+                  },
+                  "LastName": {
+                    "type": "string"
+                  },
+                  "ProfilePhoto": {
+                    "type": "string"
+                  },
+                  "DOB": {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  "ContactNumber": {
+                    "type": "integer"
+                  },
+                  "Address": {
+                    "type": "string"
+                  },
+                  "City": {
+                    "type": "string"
+                  },
+                  "State": {
+                    "type": "string"
+                  },
+                  "Skills": {
+                    "type": "string"
+                  },
+                  "Resume": {
+                    "type": "string"
+                  },
+                  "Country": {
+                    "type": "string"
+                  },
+                  "SocialMedia": {
+                    "type": "object",
+                    "properties": {
+                      "Facebook": {
+                        "type": "string"
+                      },
+                      "Twitter": {
+                        "type": "string"
+                      },
+                      "LinkedIn": {
+                        "type": "string"
+                      },
+                      "Instagram": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Accomplishment updated successfully"
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Invalid status value"
+          },
+          "200": {
+            "description": "Job posted successfully"
+          }
+        }
+      }
+    },
+    "/v1/user/get/{userId}": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "summary": "Get User By Id",
+        "responses": {
+          "200": {
+            "description": "User retrieved successfully"
+          }
+        }
+      }
+    },
+    "/v1/auth/forgotpassword": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Forgot Password",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "Email": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Password reset link sent successfully"
+            }
+          }
+        }
+      }
+    },
+    "/v1/auth/resetpassword/{token}": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "parameters": [
+          {
+            "name": "token",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "New Password",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "Password": {
+                  "type": "string"
+                },
+                "CreatePassword": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "summary": "Reset Password",
+        "responses": {
+          "200": {
+            "description": "Password reset successfully"
+          }
+        }
+      }
+    },
+    "/v1/company/updateprofile/{companyId}": {
+      "post": {
+        "tags": [
+          "Company"
+        ],
+        "summary": "Update Company Profile",
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": {
+                "OfficialEmail": "example@example.com",
+                "Password": "password123",
+                "CompanyName": "Example Company",
+                "NeedHiring": true,
+                "Designation": "CEO",
+                "Pincode": "12345",
+                "StreetAddress": "123 Main St",
+                "Tagline": "Connecting People",
+                "Twitter": "example_twitter",
+                "Facebook": "example_facebook",
+                "Linkedin": "example_linkedin",
+                "Website": "https://www.example.com",
+                "IndustryType": "Technology",
+                "CompanySize": "Medium",
+                "Specialties": [
+                  "Web Development",
+                  "Mobile App Development"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Profile updated successfully"
+          }
+        }
+      }
+    },
+    "/v1/company/postjob/{companyId}": {
+      "post": {
+        "tags": [
+          "Company"
+        ],
+        "summary": "Create New Job Post",
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "New Job Post",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "FirstName": {
+                  "type": "string"
+                },
+                "LastName": {
+                  "type": "string"
+                },
+                "Email": {
+                  "type": "string"
+                },
+                "ConfirmEmail": {
+                  "type": "string"
+                },
+                "DateOfBirth": {
+                  "type": "string",
+                  "format": "date"
+                },
+                "PhoneNumber": {
+                  "type": "integer"
+                },
+                "JobTitle": {
+                  "type": "string"
+                },
+                "EmployeeType": {
+                  "type": "string"
+                },
+                "JobDescription": {
+                  "type": "string"
+                },
+                "Category": {
+                  "type": "string"
+                },
+                "KeySkills": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "WorkExperienceYear": {
+                  "type": "integer"
+                },
+                "HideSalary": {
+                  "type": "boolean"
+                },
+                "Location": {
+                  "type": "string"
+                },
+                "WorkingHours": {
+                  "type": "string"
+                },
+                "ExpectedSalary": {
+                  "type": "string"
+                },
+                "AvailableStartDate": {
+                  "type": "string",
+                  "format": "date"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid status value"
+          },
+          "200": {
+            "description": "Job posted successfully"
+          }
+        }
+      }
+    },
+    "/v1/company/findjob/{jobPostId}": {
+      "get": {
+        "tags": [
+          "Company"
+        ],
+        "summary": "Find Job Post by JobPostId",
+        "parameters": [
+          {
+            "name": "jobPostId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "category",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Job post found successfully"
+          }
+        }
+      }
+    },
+    "/v1/company/profile/{companyId}": {
+      "get": {
+        "tags": [
+          "Company"
+        ],
+        "summary": "Get Company Profile by CompanyId",
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Profile retrieved successfully"
+          }
+        }
+      }
+    },
+    "/v1/company/signup/": {
+      "post": {
+        "tags": [
+          "Company"
+        ],
+        "summary": "Sign up",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "UniqueName": {
+                    "type": "string"
+                  },
+                  "Name": {
+                    "type": "string"
+                  },
+                  "CompanyName": {
+                    "type": "string"
+                  },
+                  "Individual": {
+                    "type": "boolean"
+                  },
+                  "Email": {
+                    "type": "string"
+                  },
+                  "Password": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Signup successful"
+          }
+        }
+      },
+      "/v1/company/login/": {
+        "post": {
+          "tags": [
+            "Company"
+          ],
+          "summary": "Login",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "Email": "demo@email.com",
+                  "Password": "hi"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Login successful"
+            }
+          }
+        }
+      },
+      "/v1/company/emailverify/{verificationCode}": {
+        "post": {
+          "tags": [
+            "Company"
+          ],
+          "summary": "Email Verification",
+          "parameters": [
+            {
+              "name": "verificationCode",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "Email": "ankitankitkashyap45@gmail.com"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Email verified successfully"
+            }
+          }
+        }
+      },
+      "/v1/options/category/{objectId}": {
+        "get": {
+          "tags": [
+            "Filter Options"
+          ],
+          "summary": "Category Options",
+          "parameters": [
+            {
+              "name": "objectId",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "category",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful response"
+            }
+          }
+        }
+      },
+      "/v1/options/skill/{objectd}": {
+        "get": {
+          "tags": [
+            "Filter Options"
+          ],
+          "summary": "Skill Options",
+          "parameters": [
+            {
+              "name": "objectId",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "skill",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful response"
+            }
+          }
+        }
+      },
+      "/v1/video/upload": {
+        "post": {
+          "summary": "Upload video",
+          "requestBody": {
+            "content": {
+              "multipart/form-data": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "video": {
+                      "type": "string",
+                      "format": "binary"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Successful response"
+            }
+          }
+        }
+      }
+    },
+    "/v1/options/category/{objectId}": {
+      "get": {
+        "tags": [
+          "Filter Options"
+        ],
+        "summary": "Category Options",
+        "parameters": [
+          {
+            "name": "objectId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "category",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/v1/options/skill/{objectId}": {
+      "get": {
+        "tags": [
+          "Filter Options"
+        ],
+        "summary": "Skill Options",
+        "parameters": [
+          {
+            "name": "objectId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "skill",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/v1/video/upload": {
+      "post": {
+        "tags": [
+          "Video"
+        ],
+        "summary": "Upload video",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "video": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    }
+  }
+}
+
+
+//second example of swagger js
+
+
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Bookstore API",
+    "version": "1.0.0",
+    "description": "An example API for managing books in a bookstore.",
+    "contact": {
+      "name": "John Doe",
+      "email": "john.doe@example.com"
+    },
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "paths": {
+    "/books": {
+      "get": {
+        "summary": "Get a list of all books",
+        "description": "Returns a list of all books in the bookstore.",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "example": [
+                  {
+                    "id": 1,
+                    "title": "The Great Gatsby",
+                    "author": "F. Scott Fitzgerald"
+                  },
+                  {
+                    "id": 2,
+                    "title": "To Kill a Mockingbird",
+                    "author": "Harper Lee"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Add a new book",
+        "description": "Adds a new book to the bookstore.",
+        "requestBody": {
+          "description": "Book object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "example": {
+                "title": "1984",
+                "author": "George Orwell"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Book created successfully"
+          }
+        }
+      }
+    },
+    "/books/{bookId}": {
+      "get": {
+        "summary": "Get a specific book by ID",
+        "description": "Returns details about a specific book.",
+        "parameters": [
+          {
+            "name": "bookId",
+            "in": "path",
+            "description": "ID of the book to retrieve",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "example": {
+                  "id": 1,
+                  "title": "The Great Gatsby",
+                  "author": "F. Scott Fitzgerald"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Book not found"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update a specific book by ID",
+        "description": "Updates details about a specific book.",
+        "parameters": [
+          {
+            "name": "bookId",
+            "in": "path",
+            "description": "ID of the book to update",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Updated book object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "example": {
+                "title": "Updated Title",
+                "author": "Updated Author"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Book updated successfully"
+          },
+          "404": {
+            "description": "Book not found"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a specific book by ID",
+        "description": "Deletes a specific book.",
+        "parameters": [
+          {
+            "name": "bookId",
+            "in": "path",
+            "description": "ID of the book to delete",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Book deleted successfully"
+          },
+          "404": {
+            "description": "Book not found"
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Student API",
+      "version": "1.0.0",
+      "description": "API for managing students"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:4000/students",
+        "description": "Local development server"
+      }
+    ],
+    "paths": {
+      "/postDetail": {
+        "post": {
+          "tags": ["Student"],
+          "summary": "Add a new student",
+          "description": "Endpoint to add a new student to the database.",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "example": {
+                  "firstname": "John",
+                  "lastname": "Doe",
+                  "email": "john.doe@example.com",
+                  "rollno": 1
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Successfully added student",
+              "content": {
+                "application/json": {
+                  "example": {
+                    "status": "success",
+                    "message": "Successfully added student",
+                    "data": {
+                      "id": "id", 
+                      "firstname": "John",
+                      "lastname": "Doe",
+                      "email": "john.doe@example.com",
+                      "rollno": 1
+                    }
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Error adding student",
+              "content": {
+                "application/json": {
+                  "example": {
+                    "status": "error",
+                    "message": "Not added successfully",
+                    "data": "nothing found"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/getAllStudents": {
+        "get": {
+          "tags": ["Student"],
+          "summary": "Get a list of all students",
+          "description": "Endpoint to retrieve a list of all students from the database.",
+          "responses": {
+            "200": {
+              "description": "Successfully retrieved list of students",
+              "content": {
+                "application/json": {
+                  "example": [
+                    {
+                      "id": "609c52b53a5ab87330db6c77",
+                      "firstname": "John",
+                      "lastname": "Doe",
+                      "email": "john.doe@example.com",
+                      "rollno": 1
+                    },
+                    {
+                      "id": "id",
+                      "firstname": "Jane",
+                      "lastname": "Doe",
+                      "email": "jane.doe@example.com",
+                      "rollno": 2
+                    }
+                  ]
+                }
+              }
+            },
+            "500": {
+              "description": "Error retrieving list of students",
+              "content": {
+                "application/json": {
+                  "example": {
+                    "status": "error",
+                    "message": "Unable to retrieve list of students",
+                    "data": "nothing found"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
